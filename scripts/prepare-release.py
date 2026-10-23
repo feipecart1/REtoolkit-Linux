@@ -22,7 +22,7 @@ for edition, info in manifest['editions'].items():
             raise RuntimeError(f'Duplicate release filename: {target.name}')
         shutil.copy2(source, target)
 subprocess.run(['git', 'archive', '--format=tar.gz', f'--output={out}/retoolkit-linux-{version}-source.tar.gz', 'HEAD'], cwd=root, check=True)
-for name in ['LICENSE', 'VALIDATION-0.2.0.md']:
+for name in ['LICENSE']:
     shutil.copy2(root / name, out / name)
 shutil.copy2(root / 'dist/release-manifest.json', out / 'release-manifest.json')
 with (out / 'SHA256SUMS').open('w') as checksums:

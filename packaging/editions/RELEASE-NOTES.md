@@ -30,7 +30,7 @@ Para AppImage, dê permissão de execução com `chmod +x NOME.AppImage`. Se FUS
 
 ## Integridade e fontes
 
-Os anexos incluem `SHA256SUMS`, inventário de conteúdo, licença, relatório de validação e fontes correspondentes de REtoolkit, Cutter/Rizin, radare2 e OpenJDK. As ferramentas incluídas preservam suas licenças originais. Para verificar os arquivos baixados:
+Os anexos incluem `SHA256SUMS`, inventário de conteúdo, licença e fontes correspondentes de REtoolkit, Cutter/Rizin, radare2 e OpenJDK. As ferramentas incluídas preservam suas licenças originais. Para verificar os arquivos baixados:
 
 ```bash
 sha256sum --ignore-missing -c SHA256SUMS

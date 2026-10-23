@@ -2,7 +2,6 @@ name: Publish Light and Full release
 on:
   push:
     tags: ['v*']
-    branches: ['release/v0.2.0-retry', 'release/v0.2.0-title']
   workflow_dispatch:
 permissions:
   contents: read
@@ -11,7 +10,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   release:
-    if: startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/release/v0.2.0-retry'
+    if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     permissions:
@@ -57,14 +56,3 @@ jobs:
           gh release create "$RELEASE_TAG" --verify-tag --draft --title "REtoolkit Linux ${RELEASE_TAG} — Light e Full" --notes-file packaging/editions/RELEASE-NOTES.md
           gh release upload "$RELEASE_TAG" dist/release/*
           gh release edit "$RELEASE_TAG" --draft=false --latest
-  correct-release-title:
-    if: github.ref == 'refs/heads/release/v0.2.0-title'
-    runs-on: ubuntu-24.04
-    permissions:
-      contents: write
-    steps:
-      - name: Correct the published 0.2.0 title
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
-        run: gh release edit v0.2.0 --title "REtoolkit Linux v0.2.0 — Light e Full"
