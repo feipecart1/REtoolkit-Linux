@@ -1,0 +1,862 @@
+{
+  "schema_version": 1,
+  "tools": [
+    {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "description": "Reverse engineering suite",
+      "category": "Engenharia Reversa",
+      "website": "https://ghidra-sre.org/",
+      "repository": "https://github.com/NationalSecurityAgency/ghidra",
+      "license": "Apache-2.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "ghidra",
+      "version_args": [],
+      "gui": true,
+      "apt": null,
+      "dnf": null,
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": [
+        "ELF",
+        "PE"
+      ]
+    },
+    {
+      "id": "cutter",
+      "name": "Cutter",
+      "description": "Rizin graphical reverse engineering platform",
+      "category": "Engenharia Reversa",
+      "website": "https://cutter.re/",
+      "repository": "https://github.com/rizinorg/cutter",
+      "license": "GPL-3.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "cutter",
+      "version_args": [],
+      "gui": true,
+      "apt": null,
+      "dnf": null,
+      "flatpak": "re.rizin.cutter",
+      "dependencies": [],
+      "file_args": [],
+      "formats": [
+        "ELF",
+        "PE"
+      ]
+    },
+    {
+      "id": "radare2",
+      "name": "radare2",
+      "description": "Command-line reverse engineering framework",
+      "category": "Engenharia Reversa",
+      "website": "https://rada.re/n/",
+      "repository": "https://github.com/radareorg/radare2",
+      "license": "LGPL-3.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "radare2",
+      "version_args": [
+        "-v"
+      ],
+      "gui": false,
+      "apt": "radare2",
+      "dnf": "radare2",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": [
+        "ELF",
+        "PE"
+      ]
+    },
+    {
+      "id": "rizin",
+      "name": "Rizin",
+      "description": "Binary analysis framework",
+      "category": "Engenharia Reversa",
+      "website": "https://rizin.re/",
+      "repository": "https://github.com/rizinorg/rizin",
+      "license": "LGPL-3.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "rizin",
+      "version_args": [],
+      "gui": false,
+      "apt": null,
+      "dnf": "rizin",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": [
+        "ELF",
+        "PE"
+      ]
+    },
+    {
+      "id": "die",
+      "name": "Detect It Easy",
+      "description": "File type and packer identification",
+      "category": "Engenharia Reversa",
+      "website": "https://github.com/horsicq/Detect-It-Easy",
+      "repository": "https://github.com/horsicq/Detect-It-Easy",
+      "license": "MIT",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "die",
+      "version_args": [],
+      "gui": true,
+      "apt": null,
+      "dnf": null,
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": [
+        "ELF",
+        "PE"
+      ]
+    },
+    {
+      "id": "imhex",
+      "name": "ImHex",
+      "description": "Hex editor and pattern language",
+      "category": "Engenharia Reversa",
+      "website": "https://imhex.werwolv.net/",
+      "repository": "https://github.com/WerWolv/ImHex",
+      "license": "GPL-2.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "imhex",
+      "version_args": [],
+      "gui": true,
+      "apt": null,
+      "dnf": null,
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": [
+        "ELF",
+        "PE"
+      ]
+    },
+    {
+      "id": "binaryninja",
+      "name": "Binary Ninja",
+      "description": "Commercial binary analysis platform; official licensed distribution",
+      "category": "Engenharia Reversa",
+      "website": "https://binary.ninja/",
+      "repository": "https://github.com/Vector35/binaryninja-api",
+      "license": "Proprietary",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "binaryninja",
+      "version_args": [],
+      "gui": true,
+      "apt": null,
+      "dnf": null,
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": [
+        "ELF",
+        "PE"
+      ]
+    },
+    {
+      "id": "gdb",
+      "name": "GDB",
+      "description": "GNU debugger",
+      "category": "Debuggers",
+      "website": "https://www.gnu.org/software/gdb/",
+      "repository": "https://sourceware.org/git/binutils-gdb.git",
+      "license": "GPL-3.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "gdb",
+      "version_args": [
+        "--version"
+      ],
+      "gui": false,
+      "apt": "gdb",
+      "dnf": "gdb",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": [
+        "ELF"
+      ]
+    },
+    {
+      "id": "lldb",
+      "name": "LLDB",
+      "description": "LLVM debugger",
+      "category": "Debuggers",
+      "website": "https://lldb.llvm.org/",
+      "repository": "https://github.com/llvm/llvm-project",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "lldb",
+      "version_args": [
+        "--version"
+      ],
+      "gui": false,
+      "apt": "lldb",
+      "dnf": "lldb",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": [
+        "ELF"
+      ]
+    },
+    {
+      "id": "pwndbg",
+      "name": "pwndbg",
+      "description": "GDB plugin for exploitation and debugging",
+      "category": "Debuggers",
+      "website": "https://pwndbg.re/",
+      "repository": "https://github.com/pwndbg/pwndbg",
+      "license": "MIT",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "pwndbg",
+      "version_args": [],
+      "gui": false,
+      "apt": null,
+      "dnf": null,
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": []
+    },
+    {
+      "id": "gdb-dashboard",
+      "name": "GDB Dashboard",
+      "description": "GDB configuration extension; manual official installation",
+      "category": "Debuggers",
+      "website": "https://github.com/cyrus-and/gdb-dashboard",
+      "repository": "https://github.com/cyrus-and/gdb-dashboard",
+      "license": "MIT",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "gdb-dashboard",
+      "version_args": [],
+      "gui": false,
+      "apt": null,
+      "dnf": null,
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": []
+    },
+    {
+      "id": "strace",
+      "name": "strace",
+      "description": "Trace system calls",
+      "category": "Debuggers",
+      "website": "https://strace.io/",
+      "repository": "https://github.com/strace/strace",
+      "license": "LGPL-2.1-or-later",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "strace",
+      "version_args": [
+        "-V"
+      ],
+      "gui": false,
+      "apt": "strace",
+      "dnf": "strace",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": []
+    },
+    {
+      "id": "ltrace",
+      "name": "ltrace",
+      "description": "Trace dynamic library calls",
+      "category": "Debuggers",
+      "website": "https://www.ltrace.org/",
+      "repository": "https://gitlab.com/cespedes/ltrace",
+      "license": "GPL-2.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "ltrace",
+      "version_args": [
+        "--version"
+      ],
+      "gui": false,
+      "apt": "ltrace",
+      "dnf": "ltrace",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": []
+    },
+    {
+      "id": "yara",
+      "name": "YARA",
+      "description": "Pattern matching for malware research",
+      "category": "An\u00e1lise de Malware",
+      "website": "https://virustotal.github.io/yara/",
+      "repository": "https://github.com/VirusTotal/yara",
+      "license": "BSD-3-Clause",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "yara",
+      "version_args": [
+        "--version"
+      ],
+      "gui": false,
+      "apt": "yara",
+      "dnf": "yara",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": []
+    },
+    {
+      "id": "capa",
+      "name": "capa",
+      "description": "Identify executable capabilities",
+      "category": "An\u00e1lise de Malware",
+      "website": "https://mandiant.github.io/capa/",
+      "repository": "https://github.com/mandiant/capa",
+      "license": "Apache-2.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "capa",
+      "version_args": [],
+      "gui": false,
+      "apt": null,
+      "dnf": null,
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": [
+        "PE",
+        "ELF"
+      ]
+    },
+    {
+      "id": "floss",
+      "name": "FLOSS",
+      "description": "Extract obfuscated strings",
+      "category": "An\u00e1lise de Malware",
+      "website": "https://github.com/mandiant/flare-floss",
+      "repository": "https://github.com/mandiant/flare-floss",
+      "license": "Apache-2.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "floss",
+      "version_args": [],
+      "gui": false,
+      "apt": null,
+      "dnf": null,
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": [
+        "PE"
+      ]
+    },
+    {
+      "id": "clamav",
+      "name": "ClamAV",
+      "description": "Antivirus scanner; signatures maintained separately",
+      "category": "An\u00e1lise de Malware",
+      "website": "https://www.clamav.net/",
+      "repository": "https://github.com/Cisco-Talos/clamav",
+      "license": "GPL-2.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "clamscan",
+      "version_args": [
+        "--version"
+      ],
+      "gui": false,
+      "apt": "clamav",
+      "dnf": "clamav",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": []
+    },
+    {
+      "id": "volatility3",
+      "name": "Volatility 3",
+      "description": "Memory forensics framework",
+      "category": "An\u00e1lise de Malware",
+      "website": "https://volatilityfoundation.org/",
+      "repository": "https://github.com/volatilityfoundation/volatility3",
+      "license": "VSL-1.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "vol",
+      "version_args": [],
+      "gui": false,
+      "apt": null,
+      "dnf": null,
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": []
+    },
+    {
+      "id": "pefile",
+      "name": "pefile",
+      "description": "Python library; detected through package metadata",
+      "category": "An\u00e1lise de Malware",
+      "website": "https://github.com/erocarrera/pefile",
+      "repository": "https://github.com/erocarrera/pefile",
+      "license": "MIT",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "pefile",
+      "version_args": [],
+      "gui": false,
+      "apt": "python3-pefile",
+      "dnf": "python3-pefile",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": []
+    },
+    {
+      "id": "oletools",
+      "name": "oletools",
+      "description": "Inspect Microsoft OLE documents",
+      "category": "An\u00e1lise de Malware",
+      "website": "https://github.com/decalage2/oletools",
+      "repository": "https://github.com/decalage2/oletools",
+      "license": "BSD-2-Clause",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "oleid",
+      "version_args": [],
+      "gui": false,
+      "apt": null,
+      "dnf": "python3-oletools",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": []
+    },
+    {
+      "id": "binwalk",
+      "name": "binwalk",
+      "description": "Firmware signature inspection",
+      "category": "An\u00e1lise de Firmware",
+      "website": "https://github.com/ReFirmLabs/binwalk",
+      "repository": "https://github.com/ReFirmLabs/binwalk",
+      "license": "MIT",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "binwalk",
+      "version_args": [
+        "--version"
+      ],
+      "gui": false,
+      "apt": "binwalk",
+      "dnf": "binwalk",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": []
+    },
+    {
+      "id": "qemu",
+      "name": "QEMU",
+      "description": "Emulator; never launch unknown firmware automatically",
+      "category": "An\u00e1lise de Firmware",
+      "website": "https://www.qemu.org/",
+      "repository": "https://gitlab.com/qemu-project/qemu",
+      "license": "GPL-2.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "qemu-system-x86_64",
+      "version_args": [],
+      "gui": false,
+      "apt": "qemu-system-x86",
+      "dnf": "qemu-system-x86-core",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": []
+    },
+    {
+      "id": "firmware-mod-kit",
+      "name": "firmware-mod-kit",
+      "description": "Legacy firmware toolkit; manual compatibility review required",
+      "category": "An\u00e1lise de Firmware",
+      "website": "https://github.com/rampageX/firmware-mod-kit",
+      "repository": "https://github.com/rampageX/firmware-mod-kit",
+      "license": "Multiple; inspect upstream",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "extract-firmware.sh",
+      "version_args": [],
+      "gui": false,
+      "apt": null,
+      "dnf": null,
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": []
+    },
+    {
+      "id": "jadx",
+      "name": "JADX",
+      "description": "Android DEX decompiler",
+      "category": "Android",
+      "website": "https://github.com/skylot/jadx",
+      "repository": "https://github.com/skylot/jadx",
+      "license": "Apache-2.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "jadx-gui",
+      "version_args": [],
+      "gui": true,
+      "apt": null,
+      "dnf": null,
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": [
+        "DEX",
+        "APK"
+      ]
+    },
+    {
+      "id": "apktool",
+      "name": "apktool",
+      "description": "Android resource decoder",
+      "category": "Android",
+      "website": "https://apktool.org/",
+      "repository": "https://github.com/iBotPeaches/Apktool",
+      "license": "Apache-2.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "apktool",
+      "version_args": [
+        "--version"
+      ],
+      "gui": false,
+      "apt": "apktool",
+      "dnf": "apktool",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": []
+    },
+    {
+      "id": "adb",
+      "name": "adb",
+      "description": "Android debug bridge",
+      "category": "Android",
+      "website": "https://developer.android.com/tools/adb",
+      "repository": "https://android.googlesource.com/platform/packages/modules/adb/",
+      "license": "Apache-2.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "adb",
+      "version_args": [
+        "version"
+      ],
+      "gui": false,
+      "apt": "adb",
+      "dnf": "android-tools",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": []
+    },
+    {
+      "id": "frida",
+      "name": "Frida",
+      "description": "Dynamic instrumentation toolkit",
+      "category": "Android",
+      "website": "https://frida.re/",
+      "repository": "https://github.com/frida/frida",
+      "license": "wxWindows Library Licence",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "frida",
+      "version_args": [
+        "--version"
+      ],
+      "gui": false,
+      "apt": null,
+      "dnf": null,
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": []
+    },
+    {
+      "id": "objection",
+      "name": "objection",
+      "description": "Runtime mobile exploration toolkit",
+      "category": "Android",
+      "website": "https://github.com/sensepost/objection",
+      "repository": "https://github.com/sensepost/objection",
+      "license": "GPL-3.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "objection",
+      "version_args": [
+        "--version"
+      ],
+      "gui": false,
+      "apt": null,
+      "dnf": null,
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": []
+    },
+    {
+      "id": "file",
+      "name": "file",
+      "description": "Identify files from signatures",
+      "category": "Utilit\u00e1rios",
+      "website": "https://www.darwinsys.com/file/",
+      "repository": "https://github.com/file/file",
+      "license": "BSD-2-Clause",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "file",
+      "version_args": [
+        "--version"
+      ],
+      "gui": false,
+      "apt": "file",
+      "dnf": "file",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": [
+        "ELF",
+        "PE",
+        "DEX",
+        "APK"
+      ]
+    },
+    {
+      "id": "strings",
+      "name": "strings",
+      "description": "Extract printable strings",
+      "category": "Utilit\u00e1rios",
+      "website": "https://www.gnu.org/software/binutils/",
+      "repository": "https://sourceware.org/git/binutils-gdb.git",
+      "license": "GPL-3.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "strings",
+      "version_args": [
+        "--version"
+      ],
+      "gui": false,
+      "apt": "binutils",
+      "dnf": "binutils",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": [
+        "ELF",
+        "PE"
+      ]
+    },
+    {
+      "id": "readelf",
+      "name": "readelf",
+      "description": "Inspect ELF headers and sections",
+      "category": "Utilit\u00e1rios",
+      "website": "https://www.gnu.org/software/binutils/",
+      "repository": "https://sourceware.org/git/binutils-gdb.git",
+      "license": "GPL-3.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "readelf",
+      "version_args": [
+        "--version"
+      ],
+      "gui": false,
+      "apt": "binutils",
+      "dnf": "binutils",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [
+        "-h"
+      ],
+      "formats": [
+        "ELF"
+      ]
+    },
+    {
+      "id": "objdump",
+      "name": "objdump",
+      "description": "Disassemble object files",
+      "category": "Utilit\u00e1rios",
+      "website": "https://www.gnu.org/software/binutils/",
+      "repository": "https://sourceware.org/git/binutils-gdb.git",
+      "license": "GPL-3.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "objdump",
+      "version_args": [
+        "--version"
+      ],
+      "gui": false,
+      "apt": "binutils",
+      "dnf": "binutils",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [
+        "-f"
+      ],
+      "formats": [
+        "ELF",
+        "PE"
+      ]
+    },
+    {
+      "id": "xxd",
+      "name": "xxd",
+      "description": "Hexadecimal file dump",
+      "category": "Utilit\u00e1rios",
+      "website": "https://www.vim.org/",
+      "repository": "https://github.com/vim/vim",
+      "license": "Vim",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "xxd",
+      "version_args": [],
+      "gui": false,
+      "apt": "xxd",
+      "dnf": "vim-common",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": [
+        "ELF",
+        "PE"
+      ]
+    },
+    {
+      "id": "patchelf",
+      "name": "patchelf",
+      "description": "Inspect and modify ELF metadata",
+      "category": "Utilit\u00e1rios",
+      "website": "https://github.com/NixOS/patchelf",
+      "repository": "https://github.com/NixOS/patchelf",
+      "license": "GPL-3.0",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "patchelf",
+      "version_args": [
+        "--version"
+      ],
+      "gui": false,
+      "apt": "patchelf",
+      "dnf": "patchelf",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": []
+    },
+    {
+      "id": "checksec",
+      "name": "checksec",
+      "description": "Inspect executable hardening",
+      "category": "Utilit\u00e1rios",
+      "website": "https://github.com/slimm609/checksec.sh",
+      "repository": "https://github.com/slimm609/checksec.sh",
+      "license": "BSD-3-Clause",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "checksec",
+      "version_args": [],
+      "gui": false,
+      "apt": "checksec",
+      "dnf": "checksec",
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": []
+    },
+    {
+      "id": "hashdeep",
+      "name": "hashdeep",
+      "description": "File hashing and auditing",
+      "category": "Utilit\u00e1rios",
+      "website": "https://github.com/jessek/hashdeep",
+      "repository": "https://github.com/jessek/hashdeep",
+      "license": "Public domain / GPL components",
+      "architectures": [
+        "x86_64"
+      ],
+      "executable": "hashdeep",
+      "version_args": [
+        "-V"
+      ],
+      "gui": false,
+      "apt": "hashdeep",
+      "dnf": null,
+      "flatpak": null,
+      "dependencies": [],
+      "file_args": [],
+      "formats": [],
+      "user_deb": {
+        "url": "https://archive.ubuntu.com/ubuntu/pool/universe/h/hashdeep/hashdeep_4.4-7.1_amd64.deb",
+        "sha256": "537d50feda59db0d6a2d6ce5c71829a1409151ad4e7fa64a1e00baffe63c6dd6",
+        "version": "4.4-7.1",
+        "distribution": "ubuntu",
+        "version_id": "24.04",
+        "packages": [
+          "libc6",
+          "libgcc-s1",
+          "libstdc++6"
+        ]
+      }
+    }
+  ]
+}

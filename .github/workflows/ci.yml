@@ -1,0 +1,62 @@
+name: Native build and packages
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ubuntu:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build dependencies
+        run: sudo apt-get update && sudo apt-get install -y build-essential pkg-config libgtk-4-dev libadwaita-1-dev xvfb xauth rpm desktop-file-utils patchelf fakeroot imagemagick libglib2.0-bin x11-utils curl
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo fmt --check
+      - run: cargo clippy --locked --all-targets -- -D warnings
+      - run: cargo test --locked
+      - run: python3 -m unittest discover -s tests -p 'test_*.py'
+      - run: cargo build --locked --release
+      - name: GUI integration
+        run: xvfb-run -a dbus-run-session -- env GDK_BACKEND=x11 GSK_RENDERER=cairo GTK_A11Y=none target/release/retoolkit-linux --gui-smoke-test
+      - name: Build both editions
+        run: |
+          python3 scripts/fetch-full.py
+          python3 scripts/prepare-full.py
+          python3 scripts/fetch-full-sources.py
+          scripts/package.sh
+          python3 scripts/fetch-appimage-tools.py
+          python3 scripts/appimage.py
+          scripts/check-packages.sh
+          python3 scripts/check-apt-editions.py
+          xvfb-run -a python3 scripts/check-full-tools.py --gui
+          python3 scripts/release-index.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: retoolkit-linux-light-ubuntu24-x86_64
+          path: dist/light/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: retoolkit-linux-full-ubuntu24-x86_64
+          path: dist/full/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: retoolkit-linux-release-inventory
+          path: |
+            dist/RELEASES.md
+            dist/release-manifest.json
+  fedora-source-check:
+    runs-on: ubuntu-24.04
+    container: fedora:latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Native Fedora build prerequisites
+        run: dnf install -y rust cargo rustfmt clippy gcc pkgconf-pkg-config gtk4-devel libadwaita-devel xorg-x11-server-Xvfb xorg-x11-xauth desktop-file-utils dbus-daemon
+      - run: cargo test --locked
+      - run: cargo build --locked --release
+      - run: xvfb-run -a dbus-run-session -- env GDK_BACKEND=x11 GSK_RENDERER=cairo GTK_A11Y=none target/release/retoolkit-linux --gui-smoke-test
+# This workflow uploads CI artifacts only. It never publishes a GitHub release.

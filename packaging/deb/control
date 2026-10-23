@@ -1,0 +1,11 @@
+Package: retoolkit-linux
+Version: 0.2.0
+Section: devel
+Priority: optional
+Architecture: amd64
+Maintainer: REtoolkit Linux contributors <retoolkit-linux@localhost>
+Depends: libc6 (>= 2.39), libgtk-4-1 (>= 4.10), libadwaita-1-0 (>= 1.4)
+Recommends: policykit-1, xdg-utils, gnome-terminal
+Description: Native reverse engineering workstation manager
+ Discover installed security tools, inspect binaries statically and manage
+ on-demand tool installation through your distribution package manager.

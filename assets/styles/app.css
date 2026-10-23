@@ -1,0 +1,23 @@
+window.retoolkit-dark { background: #0c1424; color: #edf3fb; }
+.sidebar { padding: 16px 10px; }
+.retoolkit-dark .sidebar { background: #101b2e; border-right: 1px solid #263449; }
+.brand { font-size: 22px; font-weight: 800; padding: 16px 8px; }
+.retoolkit-dark .brand { color: #6de4e8; }
+.tagline { font-size: 12px; padding: 0 8px 20px; }
+.retoolkit-dark .tagline { color: #9cacc3; }
+.title { font-size: 30px; font-weight: 800; }
+.retoolkit-dark .subtitle { color: #a7b8ce; }
+.card { border: 1px solid alpha(currentColor,0.18); border-radius: 14px; padding: 18px; }
+.retoolkit-dark .card { background: #182338; border-color: #2b3b51; }
+.metric { font-size: 30px; font-weight: 800; }
+.retoolkit-dark .metric { color: #6de4e8; }
+.toolname { font-weight: 700; font-size: 17px; }
+.retoolkit-dark .installed { color: #79e6b3; }
+.retoolkit-dark .badge { color: #bca9ff; }
+.retoolkit-dark button.suggested-action { background: #23576a; color: #e6fcff; }
+.sidebar button { padding: 11px; margin: 2px 0; }
+.retoolkit-dark .sidebar button:checked { background: #283954; color: #83edf0; }
+textview, textview text { font-family: monospace; }
+.retoolkit-dark textview, .retoolkit-dark textview text { background: #101a2a; color: #dbe7f7; }
+.retoolkit-dark headerbar { background: #111c2f; }
+.retoolkit-dark .error { color: #ffb5ad; }

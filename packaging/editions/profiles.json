@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "light": {
+    "bundled_tools": [],
+    "deb_tools": [],
+    "rpm_tools": []
+  },
+  "full": {
+    "bundled_tools": ["ghidra", "cutter", "radare2"],
+    "deb_tools": ["gdb", "yara", "strace", "ltrace", "file", "binutils", "xxd", "patchelf", "hashdeep"],
+    "rpm_tools": ["gdb", "yara", "strace", "ltrace", "file", "binutils", "vim-common", "patchelf"]
+  }
+}

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=REtoolkit Linux
+Comment=Native reverse engineering and static analysis workstation
+Comment[pt_BR]=Estação de engenharia reversa e análise estática
+Exec=retoolkit-linux
+Icon=retoolkit-linux
+Terminal=false
+Categories=Development;Debugger;
+Keywords=reverse;engineering;malware;ELF;analysis;
+StartupNotify=true

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.retoolkitlinux.REtoolkit</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>REtoolkit Linux</name>
+  <summary>Manage reverse engineering tools and inspect binaries locally</summary>
+  <description><p>A native Linux workstation manager with real tool detection, on-demand package installation and bounded static binary inspection. It is not a malware sandbox.</p></description>
+  <launchable type="desktop-id">io.github.retoolkitlinux.REtoolkit.desktop</launchable>
+  <provides><binary>retoolkit-linux</binary></provides>
+  <releases><release version="0.1.0" date="2026-10-23"/></releases>
+  <content_rating type="oars-1.1"/>
+</component>
