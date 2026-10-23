@@ -2,6 +2,7 @@ name: Publish Light and Full release
 on:
   push:
     tags: ['v*']
+    branches: ['release/v0.2.0-retry']
   workflow_dispatch:
 permissions:
   contents: read
@@ -10,7 +11,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   release:
-    if: startsWith(github.ref, 'refs/tags/v')
+    if: startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/release/v0.2.0-retry'
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     permissions:
@@ -25,7 +26,10 @@ jobs:
           import os, re
           from pathlib import Path
           version = re.search(r'^version = "([^"]+)"', Path('Cargo.toml').read_text(), re.M)[1]
-          assert os.environ['GITHUB_REF_NAME'] == 'v' + version, 'Tag must match Cargo version'
+          if os.environ['GITHUB_REF'].startswith('refs/tags/'):
+              assert os.environ['GITHUB_REF_NAME'] == 'v' + version, 'Tag must match Cargo version'
+          with open(os.environ['GITHUB_ENV'], 'a') as env:
+              env.write('RELEASE_TAG=v' + version + '\n')
           Path('.build').mkdir(exist_ok=True)
           PY
       - name: Build dependencies
@@ -43,21 +47,13 @@ jobs:
           cargo build --locked --release
           xvfb-run -a dbus-run-session -- env GDK_BACKEND=x11 GSK_RENDERER=cairo GTK_A11Y=none target/release/retoolkit-linux --gui-smoke-test
       - name: Build Light and Full installers
-        run: |
-          python3 scripts/fetch-full.py
-          python3 scripts/prepare-full.py
-          python3 scripts/fetch-full-sources.py
-          scripts/package.sh
-          python3 scripts/fetch-appimage-tools.py
-          python3 scripts/appimage.py
-          scripts/check-packages.sh
-          python3 scripts/release-index.py
+        run: python3 scripts/build-release.py
       - name: Prepare release assets
         run: python3 scripts/prepare-release.py
       - name: Upload and publish complete release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" --verify-tag --draft --title "REtoolkit Linux ${GITHUB_REF_NAME} — Light e Full" --notes-file packaging/editions/RELEASE-NOTES.md
-          gh release upload "$GITHUB_REF_NAME" dist/release/*
-          gh release edit "$GITHUB_REF_NAME" --draft=false --latest
+          gh release create "$RELEASE_TAG" --verify-tag --draft --title "REtoolkit Linux ${GITHUB_REF_NAME} — Light e Full" --notes-file packaging/editions/RELEASE-NOTES.md
+          gh release upload "$RELEASE_TAG" dist/release/*
+          gh release edit "$RELEASE_TAG" --draft=false --latest
