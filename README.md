@@ -1,6 +1,33 @@
-# REtoolkit Linux — Light e Full
+<div align="center">
 
-Aplicação desktop nativa em Rust, GTK4 e libadwaita para engenharia reversa e inspeção estática. **Versão 0.2.0, com duas edições alternativas.** O usuário escolhe uma; nenhuma exige Rust/Cargo no computador de destino.
+<img src="assets/icons/retoolkit-linux.svg" width="96" alt="REtoolkit Linux" />
+
+# REtoolkit Linux
+
+**Suas ferramentas de engenharia reversa, em um só lugar.**
+
+Desktop nativo para Linux com catálogo de ferramentas, detecção do ambiente e análise estática local.
+Construído em **Rust, GTK4 e libadwaita**.
+
+![Versão](https://img.shields.io/badge/versão-0.2.0-6de4e8?style=flat-square)
+![Plataforma](https://img.shields.io/badge/Linux-x86__64-bca9ff?style=flat-square)
+![Licença](https://img.shields.io/badge/código-MIT-f5c451?style=flat-square)
+
+[**Downloads**](https://github.com/feipecart1/REtoolkit-Linux/releases) · [Instalação](#instalação) · [Funcionalidades](#funcionalidades-do-aplicativo) · [Desenvolvimento](#desenvolvimento-e-geração-das-duas-edições)
+
+<img src="assets/screenshots/dashboard.png" width="960" alt="Dashboard do REtoolkit Linux com catálogo e detecção de ferramentas" />
+
+</div>
+
+## Escolha sua edição
+
+As duas edições oferecem a mesma interface. Escolha uma instalação enxuta ou comece com as principais ferramentas incluídas. **Rust e Cargo não são necessários para usar o aplicativo.**
+
+<div align="center">
+<img src="assets/icons/retoolkit-linux.svg" width="64" alt="Ícone da edição Light" />
+&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="assets/icons/retoolkit-linux-full.svg" width="64" alt="Ícone da edição Full com raio dourado" />
+</div>
 
 | Edição | Conteúdo | Para quem |
 |---|---|---|
@@ -9,18 +36,20 @@ Aplicação desktop nativa em Rust, GTK4 e libadwaita para engenharia reversa e 
 
 A Full é uma seleção definida de ferramentas, **não inclui automaticamente as 36 entradas do catálogo**. Binary Ninja e outras ferramentas comerciais continuam dependendo da licença do usuário. As ferramentas incluídas são distribuições oficiais verificadas por SHA-256 e preservam suas próprias licenças.
 
-## Escolher e instalar
+## Instalação
 
-Artefatos atuais em `dist/light/` e `dist/full/`. Os arquivos 0.1.0 na raiz de `dist/` são históricos e foram preservados. Consulte `dist/RELEASES.md` para o índice atual.
+Baixe o instalador da edição desejada na página de [Releases](https://github.com/feipecart1/REtoolkit-Linux/releases). Para Ubuntu, use o **DEB**; para execução portátil, escolha o **AppImage**. O **RPM** tem suporte experimental.
+
+Os comandos abaixo devem ser executados na pasta onde você salvou o download. Para builds locais, os arquivos ficam em `dist/light/` e `dist/full/`.
 
 No Ubuntu 24.04 x86_64, escolha **um** dos comandos:
 
 ```bash
 # Light
-sudo apt install ./dist/light/retoolkit-linux-light_0.2.0_amd64.deb
+sudo apt install ./retoolkit-linux-light_0.2.0_amd64.deb
 
 # OU Full
-sudo apt install ./dist/full/retoolkit-linux-full_0.2.0_amd64.deb
+sudo apt install ./retoolkit-linux-full_0.2.0_amd64.deb
 ```
 
 Depois abra **REtoolkit Linux Light** ou **REtoolkit Linux Full** no menu, ou execute `retoolkit-linux`. O programa abre como usuário comum. Somente a instalação de sistema exige autorização administrativa.
@@ -32,9 +61,9 @@ Os dois pacotes declaram conflito entre si e substituem a antiga edição `retoo
 Em Fedora compatível, os RPMs experimentais são:
 
 ```bash
-sudo dnf install ./dist/light/retoolkit-linux-light-0.2.0.x86_64.rpm
+sudo dnf install ./retoolkit-linux-light-0.2.0.x86_64.rpm
 # OU
-sudo dnf install ./dist/full/retoolkit-linux-full-0.2.0.x86_64.rpm
+sudo dnf install ./retoolkit-linux-full-0.2.0.x86_64.rpm
 ```
 
 Ao trocar uma edição RPM já instalada, use a operação de troca do DNF e revise a transação. O suporte Fedora ainda exige teste de sistema limpo: gerar e validar o arquivo RPM no Ubuntu não é certificação Fedora.
@@ -44,12 +73,12 @@ Ao trocar uma edição RPM já instalada, use a operação de troca do DNF e rev
 Também há dois AppImages:
 
 ```bash
-chmod +x ./dist/light/REtoolkit-Linux-Light-0.2.0-x86_64.AppImage
-./dist/light/REtoolkit-Linux-Light-0.2.0-x86_64.AppImage
+chmod +x ./REtoolkit-Linux-Light-0.2.0-x86_64.AppImage
+./REtoolkit-Linux-Light-0.2.0-x86_64.AppImage
 
 # OU
-chmod +x ./dist/full/REtoolkit-Linux-Full-0.2.0-x86_64.AppImage
-./dist/full/REtoolkit-Linux-Full-0.2.0-x86_64.AppImage
+chmod +x ./REtoolkit-Linux-Full-0.2.0-x86_64.AppImage
+./REtoolkit-Linux-Full-0.2.0-x86_64.AppImage
 ```
 
 Sem FUSE, prefixe o comando escolhido com `APPIMAGE_EXTRACT_AND_RUN=1`. A extração temporária da Full exige espaço livre adicional, pois o conteúdo descompactado inclui as ferramentas e o JDK.
@@ -83,6 +112,9 @@ Ghidra e Cutter preservam seus próprios diálogos de primeiro uso. O aplicativo
 
 O catálogo não garante instalação automática de todas as entradas. Ferramentas sem método configurado têm acesso ao site oficial; plugins GDB ainda podem exigir configuração manual. A versão Light continua oferecendo o fluxo de instalação sob demanda, incluindo radare2 quando há candidato APT.
 
+<details>
+<summary><strong>Atalho e instalação por usuário</strong></summary>
+
 ## Atalho e instalação por usuário
 
 Light: **Configurações → Instalar aplicativo para meu usuário** cria uma cópia do ELF em `$XDG_DATA_HOME/retoolkit-linux/app`, ícone e lançador no menu. Marque o atalho opcional para usar a pasta retornada por `xdg-user-dir DESKTOP`. Arquivos existentes não são sobrescritos; requer GTK/libadwaita no sistema.
@@ -98,6 +130,8 @@ chmod +x "$retoolkit_desktop/REtoolkit Linux.desktop"
 ```
 
 Confirme o diretório retornado. O GNOME pode exigir extensão de ícones e a ação **Permitir iniciar**. O lançador tem `Terminal=false`; não há tentativa de contornar as regras do desktop.
+
+</details>
 
 ## Segurança, offline e limites
 
@@ -158,5 +192,3 @@ Arquitetura: GTK em `src/ui`; catálogo, detecção, instalações, análise, pr
 Código original sob MIT, inspirado no conceito do [REtoolkit da Mente Binária](https://github.com/mentebinaria/retoolkit), sem reutilizar código ou identidade visual. Metadata AppStream sob CC0-1.0. Bibliotecas e programas incluídos mantêm suas licenças originais; “Full” não os relicencia como MIT.
 
 Os pacotes preservam `LICENSE`, `NOTICE`, diretórios `legal` e os recursos originais dos fornecedores. Avisos das dependências Cargo acompanham os instaladores; avisos de bibliotecas Ubuntu acompanham os AppImages. `dist/full/sources/` contém arquivos-fonte oficiais de Cutter (incluindo Rizin), radare2 e JDK, com manifesto/checksums. Ao distribuir a Full, disponibilize também os arquivos-fonte e avisos correspondentes; não publique apenas o binário como se fosse integralmente MIT. Dependências embarcadas do AppImage de terceiros também mantêm suas obrigações próprias; uma release pública ainda exige revisão completa desses componentes.
-
-Nenhuma release foi publicada pelo agente. A lista de conteúdo e as pendências estão disponíveis antes da publicação.
