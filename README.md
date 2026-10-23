@@ -9,7 +9,7 @@
 Desktop nativo para Linux com catálogo de ferramentas, detecção do ambiente e análise estática local.
 Construído em **Rust, GTK4 e libadwaita**.
 
-![Versão](https://img.shields.io/badge/versão-0.2.0-6de4e8?style=flat-square)
+![Versão](https://img.shields.io/badge/versão-0.2.1-6de4e8?style=flat-square)
 ![Plataforma](https://img.shields.io/badge/Linux-x86__64-bca9ff?style=flat-square)
 ![Licença](https://img.shields.io/badge/código-MIT-f5c451?style=flat-square)
 
@@ -46,10 +46,10 @@ No Ubuntu 24.04 x86_64, escolha **um** dos comandos:
 
 ```bash
 # Light
-sudo apt install ./retoolkit-linux-light_0.2.0_amd64.deb
+sudo apt install ./retoolkit-linux-light_0.2.1_amd64.deb
 
 # OU Full
-sudo apt install ./retoolkit-linux-full_0.2.0_amd64.deb
+sudo apt install ./retoolkit-linux-full_0.2.1_amd64.deb
 ```
 
 Depois abra **REtoolkit Linux Light** ou **REtoolkit Linux Full** no menu, ou execute `retoolkit-linux`. O programa abre como usuário comum. Somente a instalação de sistema exige autorização administrativa.
@@ -61,9 +61,9 @@ Os dois pacotes declaram conflito entre si e substituem a antiga edição `retoo
 Em Fedora compatível, os RPMs experimentais são:
 
 ```bash
-sudo dnf install ./retoolkit-linux-light-0.2.0.x86_64.rpm
+sudo dnf install ./retoolkit-linux-light-0.2.1.x86_64.rpm
 # OU
-sudo dnf install ./retoolkit-linux-full-0.2.0.x86_64.rpm
+sudo dnf install ./retoolkit-linux-full-0.2.1.x86_64.rpm
 ```
 
 Ao trocar uma edição RPM já instalada, use a operação de troca do DNF e revise a transação. O suporte Fedora ainda exige teste de sistema limpo: gerar e validar o arquivo RPM no Ubuntu não é certificação Fedora.
@@ -73,12 +73,12 @@ Ao trocar uma edição RPM já instalada, use a operação de troca do DNF e rev
 Também há dois AppImages:
 
 ```bash
-chmod +x ./REtoolkit-Linux-Light-0.2.0-x86_64.AppImage
-./REtoolkit-Linux-Light-0.2.0-x86_64.AppImage
+chmod +x ./REtoolkit-Linux-Light-0.2.1-x86_64.AppImage
+./REtoolkit-Linux-Light-0.2.1-x86_64.AppImage
 
 # OU
-chmod +x ./REtoolkit-Linux-Full-0.2.0-x86_64.AppImage
-./REtoolkit-Linux-Full-0.2.0-x86_64.AppImage
+chmod +x ./REtoolkit-Linux-Full-0.2.1-x86_64.AppImage
+./REtoolkit-Linux-Full-0.2.1-x86_64.AppImage
 ```
 
 Sem FUSE, prefixe o comando escolhido com `APPIMAGE_EXTRACT_AND_RUN=1`. A extração temporária da Full exige espaço livre adicional, pois o conteúdo descompactado inclui as ferramentas e o JDK.

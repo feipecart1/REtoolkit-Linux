@@ -108,15 +108,26 @@ fn main() {
             let executable =
                 retoolkit_linux::process::tool_executable(tool).ok_or("Tool unavailable")?;
             let mut command = retoolkit_linux::process::external_command(executable);
-            if let Some(file) = args.get(3) {
+            let cli_args: Vec<String> = if args.get(3).is_some_and(|a| a == "--arguments") {
+                args.iter()
+                    .skip(4)
+                    .map(|a| a.to_string_lossy().into_owned())
+                    .collect()
+            } else if let Some(file) = args.get(3) {
                 if tool.formats.is_empty() {
                     return Err("File opening is not supported for this tool".into());
                 }
                 let file = std::path::Path::new(file)
                     .canonicalize()
                     .map_err(|e| e.to_string())?;
-                command.args(&tool.file_args).arg(file);
-            }
+                let mut values = tool.file_args.clone();
+                values.push(file.to_string_lossy().into_owned());
+                values
+            } else {
+                Vec::new()
+            };
+            retoolkit_linux::process::validate_cli_arguments(tool, &cli_args)?;
+            command.args(cli_args);
             let status = command.status().map_err(|e| e.to_string())?;
             println!("\nProcess exited: {status}");
             if let Ok(paths) = retoolkit_linux::config::Paths::discover() {

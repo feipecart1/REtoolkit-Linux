@@ -193,7 +193,62 @@ fn confirm(v: &View, p: Plan) {
     d.present();
 }
 fn launch(v: &View, t: &Tool, file: Option<PathBuf>) {
-    match process::launch(t, file.as_deref()) {
+    if !t.gui && file.is_none() {
+        let hint = match t.id.as_str() {
+            "strace" | "ltrace" => "Informe um programa (ex.: /usr/bin/ls -l) ou um PID (ex.: -p 1234). O programa informado será executado; use apenas alvos de confiança.",
+            "yara" => "Informe o arquivo de regras e o alvo, por exemplo: regras.yar amostra.bin. Use aspas em caminhos com espaços.",
+            _ => "Informe as opções e os arquivos da ferramenta. Use aspas em caminhos com espaços. Os argumentos são passados diretamente, sem executar um shell.",
+        };
+        let dialog = adw::MessageDialog::new(
+            Some(&v.window),
+            Some(&format!("Executar {}", t.name)),
+            Some(hint),
+        );
+        let entry = gtk::Entry::new();
+        entry.set_placeholder_text(Some("Argumentos da ferramenta"));
+        entry.set_activates_default(true);
+        dialog.set_extra_child(Some(&entry));
+        dialog.add_response("cancel", "Cancelar");
+        dialog.add_response("run", "Executar");
+        dialog.set_response_appearance("run", adw::ResponseAppearance::Suggested);
+        dialog.set_default_response(Some("run"));
+        if process::cli_needs_arguments(t) {
+            dialog.set_response_enabled("run", false);
+            let weak = dialog.downgrade();
+            entry.connect_changed(move |e| {
+                if let Some(d) = weak.upgrade() {
+                    d.set_response_enabled("run", !e.text().trim().is_empty());
+                }
+            });
+        }
+        let vv = v.clone();
+        let tool = t.clone();
+        dialog.connect_response(None, move |_, response| {
+            if response != "run" {
+                return;
+            }
+            let text = entry.text();
+            let args = if text.trim().is_empty() {
+                Ok(Vec::new())
+            } else {
+                glib::shell_parse_argv(text.as_str()).map(|args| {
+                    args.iter()
+                        .map(|a| a.to_string_lossy().into_owned())
+                        .collect()
+                })
+            };
+            match args {
+                Ok(args) => launch_arguments(&vv, &tool, None, &args),
+                Err(error) => message(&vv, "Argumentos inválidos", &error.to_string()),
+            }
+        });
+        dialog.present();
+        return;
+    }
+    launch_arguments(v, t, file, &[]);
+}
+fn launch_arguments(v: &View, t: &Tool, file: Option<PathBuf>, args: &[String]) {
+    match process::launch_with_args(t, file.as_deref(), args) {
         Ok(s) => {
             if let Err(e) = config::record(
                 &v.model.borrow().paths,
@@ -411,7 +466,7 @@ fn catalog_page(v: &View) {
         row.append(&label(&format!("{} · {}", t.category, version), "badge"));
         let actions = gtk::Box::new(gtk::Orientation::Horizontal, 8);
         if launchable {
-            let b = gtk::Button::with_label("Abrir");
+            let b = gtk::Button::with_label(if t.gui { "Abrir" } else { "Executar…" });
             let vv = v.clone();
             let tt = t.clone();
             b.connect_clicked(move |_| launch(&vv, &tt, None));
@@ -1002,6 +1057,30 @@ fn smoke_test(v: &View, search: &gtk::SearchEntry) {
             0 => {
                 assert!(!vv.model.borrow().detected.is_empty());
                 println!("PASS GUI startup and detection");
+                let tool = vv
+                    .model
+                    .borrow()
+                    .tools
+                    .iter()
+                    .find(|t| t.id == "strace")
+                    .unwrap()
+                    .clone();
+                launch(&vv, &tool, None);
+                let dialog = gtk::Window::list_toplevels()
+                    .into_iter()
+                    .filter_map(|w| w.downcast::<adw::MessageDialog>().ok())
+                    .find(|d| d.heading().as_deref() == Some("Executar strace"))
+                    .expect("strace arguments dialog");
+                assert!(!dialog.is_response_enabled("run"));
+                let entry = dialog
+                    .extra_child()
+                    .unwrap()
+                    .downcast::<gtk::Entry>()
+                    .unwrap();
+                entry.set_text("/usr/bin/true");
+                assert!(dialog.is_response_enabled("run"));
+                dialog.response("cancel");
+                println!("PASS GUI strace asks for arguments and blocks an empty command");
                 search.set_text("yara");
             }
             1 => {

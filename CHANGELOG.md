@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.1
+
+- Ferramentas CLI pedem argumentos antes de executar, com orientação para strace, ltrace e YARA.
+- Impede abrir ferramentas que exigem um alvo com uma linha de comando vazia.
+- Mantém argumentos estruturados e caminhos entre aspas, sem executar um shell.
+
+
 ## 0.1.0 — 2026-10-23
 
 - Aplicação GTK4/libadwaita nativa em Rust, com dashboard, navegação e pesquisa.

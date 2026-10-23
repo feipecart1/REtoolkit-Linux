@@ -1,3 +1,7 @@
+## Correções desta versão
+
+Ferramentas de terminal agora pedem argumentos antes de executar. strace e ltrace orientam a escolha de um programa ou PID; YARA orienta a seleção de regras e alvo. Comandos que exigem argumentos não abrem mais vazios.
+
 ## Escolha sua edição
 
 **Light:** aplicativo nativo com dashboard, catálogo de 36 ferramentas, detecção e análise estática. Instale ferramentas sob demanda.
@@ -6,18 +10,18 @@
 
 | Formato | Light | Full |
 |---|---|---|
-| Ubuntu 24.04 x86_64 | `retoolkit-linux-light_0.2.0_amd64.deb` | `retoolkit-linux-full_0.2.0_amd64.deb` |
-| AppImage x86_64 | `REtoolkit-Linux-Light-0.2.0-x86_64.AppImage` | `REtoolkit-Linux-Full-0.2.0-x86_64.AppImage` |
-| RPM experimental | `retoolkit-linux-light-0.2.0.x86_64.rpm` | `retoolkit-linux-full-0.2.0.x86_64.rpm` |
+| Ubuntu 24.04 x86_64 | `retoolkit-linux-light_0.2.1_amd64.deb` | `retoolkit-linux-full_0.2.1_amd64.deb` |
+| AppImage x86_64 | `REtoolkit-Linux-Light-0.2.1-x86_64.AppImage` | `REtoolkit-Linux-Full-0.2.1-x86_64.AppImage` |
+| RPM experimental | `retoolkit-linux-light-0.2.1.x86_64.rpm` | `retoolkit-linux-full-0.2.1.x86_64.rpm` |
 
 ## Instalar no Ubuntu
 
 Baixe **uma** edição e execute na pasta do download:
 
 ```bash
-sudo apt install ./retoolkit-linux-full_0.2.0_amd64.deb
+sudo apt install ./retoolkit-linux-full_0.2.1_amd64.deb
 # Ou escolha a Light:
-sudo apt install ./retoolkit-linux-light_0.2.0_amd64.deb
+sudo apt install ./retoolkit-linux-light_0.2.1_amd64.deb
 ```
 
 Abra pelo menu ou execute `retoolkit-linux`, sem sudo. Os pacotes Light e Full substituem um ao outro.

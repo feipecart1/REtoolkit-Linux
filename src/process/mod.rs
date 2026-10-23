@@ -219,7 +219,30 @@ pub fn flatpak_installed(tool: &crate::catalog::Tool) -> Option<String> {
     .ok()?;
     out.success.then(|| out.text.trim().to_string())
 }
+pub fn cli_needs_arguments(tool: &crate::catalog::Tool) -> bool {
+    !tool.gui
+        && !matches!(
+            tool.id.as_str(),
+            "radare2" | "rizin" | "gdb" | "lldb" | "pwndbg" | "gdb-dashboard"
+        )
+}
+pub fn validate_cli_arguments(tool: &crate::catalog::Tool, args: &[String]) -> Result<(), String> {
+    if cli_needs_arguments(tool) && args.is_empty() {
+        return Err(format!(
+            "{} precisa de argumentos. Informe o alvo ou as opções antes de executar.",
+            tool.name
+        ));
+    }
+    Ok(())
+}
 pub fn launch(tool: &crate::catalog::Tool, file: Option<&Path>) -> Result<Spec, String> {
+    launch_with_args(tool, file, &[])
+}
+pub fn launch_with_args(
+    tool: &crate::catalog::Tool,
+    file: Option<&Path>,
+    extra: &[String],
+) -> Result<Spec, String> {
     if tool_executable(tool).is_none() && tool.gui && flatpak_installed(tool).is_some() {
         let mut args = vec![
             "run".into(),
@@ -248,11 +271,14 @@ pub fn launch(tool: &crate::catalog::Tool, file: Option<&Path>) -> Result<Spec, 
         return Ok(spec);
     }
     let executable = tool_executable(tool).ok_or("Executable no longer available")?;
-    let mut args = Vec::new();
+    let mut args = extra.to_vec();
     if let Some(path) = file {
         let canonical = path.canonicalize().map_err(|e| e.to_string())?;
         args.extend(tool.file_args.clone());
         args.push(canonical.to_string_lossy().into());
+    }
+    if !tool.gui {
+        validate_cli_arguments(tool, &args)?;
     }
     let spec = if tool.gui {
         Spec {
@@ -286,14 +312,8 @@ pub fn launch(tool: &crate::catalog::Tool, file: Option<&Path>) -> Result<Spec, 
         );
         terminal_args.push("--run-cli".into());
         terminal_args.push(tool.id.clone());
-        if let Some(path) = file {
-            terminal_args.push(
-                path.canonicalize()
-                    .map_err(|e| e.to_string())?
-                    .to_string_lossy()
-                    .into(),
-            );
-        }
+        terminal_args.push("--arguments".into());
+        terminal_args.extend(args);
         Spec {
             program: terminal,
             args: terminal_args,

@@ -194,3 +194,19 @@ fn inherited_output_cannot_bypass_timeout() {
     assert!(result.is_err());
     assert!(start.elapsed() < Duration::from_secs(3));
 }
+
+#[test]
+fn cli_tools_require_explicit_arguments_before_launch() {
+    let tools = catalog::load().unwrap();
+    for id in ["strace", "ltrace", "yara", "file", "patchelf", "apktool"] {
+        let tool = tools.iter().find(|t| t.id == id).unwrap();
+        assert!(process::validate_cli_arguments(tool, &[]).is_err(), "{id}");
+        assert!(process::validate_cli_arguments(tool, &["--help".into()]).is_ok());
+    }
+    let strace = tools.iter().find(|t| t.id == "strace").unwrap();
+    assert!(process::validate_cli_arguments(strace, &["-p".into(), "1234".into()]).is_ok());
+    for id in ["gdb", "radare2", "rizin"] {
+        let tool = tools.iter().find(|t| t.id == id).unwrap();
+        assert!(process::validate_cli_arguments(tool, &[]).is_ok());
+    }
+}
