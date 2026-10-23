@@ -2,7 +2,7 @@
 import hashlib,json,shutil,subprocess
 from pathlib import Path
 root=Path(__file__).resolve().parent.parent
-cache=root/'.build/full-source-archives';cache.mkdir(exist_ok=True)
+cache=root/'.build/full-source-archives';cache.mkdir(parents=True,exist_ok=True)
 out=root/'dist/full/sources';out.mkdir(parents=True,exist_ok=True)
 for item in json.loads((root/'packaging/editions/full-source-archives.json').read_text()):
     target=cache/item['filename']

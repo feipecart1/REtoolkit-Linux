@@ -4,7 +4,7 @@ import hashlib,json,subprocess
 from pathlib import Path
 root=Path(__file__).resolve().parent.parent
 manifest=json.loads((root/'packaging/editions/full-sources.json').read_text())
-cache=root/'.build/full-downloads';cache.mkdir(exist_ok=True)
+cache=root/'.build/full-downloads';cache.mkdir(parents=True,exist_ok=True)
 for item in manifest['tools']:
     target=cache/item['filename']
     def valid():return target.is_file() and hashlib.file_digest(target.open('rb'),'sha256').hexdigest()==item['sha256']
