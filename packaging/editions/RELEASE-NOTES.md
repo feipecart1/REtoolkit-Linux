@@ -32,10 +32,6 @@ Para AppImage, dê permissão de execução com `chmod +x NOME.AppImage`. Se FUS
 
 **Compatibilidade:** Ubuntu 24.04 x86_64; glibc ≥ 2.39. Fedora/RPM e outras distribuições ainda precisam de validação em sistema limpo. Rust/Cargo não são necessários para usar o aplicativo.
 
-## Integridade e fontes
+## Fontes e integridade
 
-Os anexos incluem `SHA256SUMS`, inventário de conteúdo, licença e fontes correspondentes de REtoolkit, Cutter/Rizin, radare2 e OpenJDK. As ferramentas incluídas preservam suas licenças originais. Para verificar os arquivos baixados:
-
-```bash
-sha256sum --ignore-missing -c SHA256SUMS
-```
+O arquivo `source-complete.tar.gz` reúne os fontes do REtoolkit e das ferramentas incluídas, licenças, manifestos e checksums. Os seis instaladores ficam disponíveis individualmente nos anexos.
